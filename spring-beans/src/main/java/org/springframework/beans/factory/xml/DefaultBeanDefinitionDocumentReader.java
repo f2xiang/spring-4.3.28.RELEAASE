@@ -122,7 +122,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// this behavior emulates a stack of delegates without actually necessitating one.
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
-
+		//有没有http://www.springframework.org/schema/beans的命名空间
 		if (this.delegate.isDefaultNamespace(root)) {
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
@@ -138,9 +138,9 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			}
 		}
 
-		preProcessXml(root);
+		preProcessXml(root); //钩子
 		parseBeanDefinitions(root, this.delegate);
-		postProcessXml(root);
+		postProcessXml(root); //钩子
 
 		this.delegate = parent;
 	}
@@ -166,9 +166,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				if (node instanceof Element) {
 					Element ele = (Element) node;
 					if (delegate.isDefaultNamespace(ele)) {
+						// 四个标签 <import />、<alias />、<bean /> 和 <beans />
 						parseDefaultElement(ele, delegate);
 					}
 					else {
+						// 自定义
 						delegate.parseCustomElement(ele);
 					}
 				}

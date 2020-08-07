@@ -129,13 +129,17 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
 	 * @param parent the parent context
 	 * @throws BeansException if context creation failed
 	 * @see #refresh()
+	 *
+	 * application建立以后，可以通过refresh()进行重建，这样会将原来的application销毁，然后重新执行初始化
 	 */
 	public ClassPathXmlApplicationContext(String[] configLocations, boolean refresh, ApplicationContext parent)
 			throws BeansException {
 
 		super(parent);
+		//设置配置文件
 		setConfigLocations(configLocations);
 		if (refresh) {
+			//核心方法
 			refresh();
 		}
 	}

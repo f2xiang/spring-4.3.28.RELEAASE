@@ -42,6 +42,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Scope identifier for the standard singleton scope: "singleton".
 	 * <p>Note that extended bean factories might support further scopes.
 	 * @see #setScope
+	 *
+	 * sington
 	 */
 	String SCOPE_SINGLETON = ConfigurableBeanFactory.SCOPE_SINGLETON;
 
@@ -49,6 +51,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Scope identifier for the standard prototype scope: "prototype".
 	 * <p>Note that extended bean factories might support further scopes.
 	 * @see #setScope
+	 *
+	 * prototype
 	 */
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
@@ -144,6 +148,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	/**
 	 * Set the names of the beans that this bean depends on being initialized.
 	 * The bean factory will guarantee that these beans get initialized first.
+	 * depends-on="" 属性设置的值
 	 */
 	void setDependsOn(String... dependsOn);
 
@@ -158,11 +163,14 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * It does not affect explicit references by name, which will get resolved even
 	 * if the specified bean is not marked as an autowire candidate. As a consequence,
 	 * autowiring by name will nevertheless inject a bean if the name matches.
+	 * 设置该 Bean 是否可以注入到其他 Bean 中，只对根据类型注入有效，
+	 * 如果根据名称注入，即使这边设置了 false，也是可以的
 	 */
 	void setAutowireCandidate(boolean autowireCandidate);
 
 	/**
 	 * Return whether this bean is a candidate for getting autowired into some other bean.
+	 * 该 Bean 是否可以注入到其他 Bean 中
 	 */
 	boolean isAutowireCandidate();
 
@@ -170,6 +178,8 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 * Set whether this bean is a primary autowire candidate.
 	 * <p>If this value is {@code true} for exactly one bean among multiple
 	 * matching candidates, it will serve as a tie-breaker.
+	 * 主要的。
+	 * 同一接口的多个实现，如果不指定名字的话，Spring 会优先选择设置 primary 为 true 的 bean
 	 */
 	void setPrimary(boolean primary);
 
