@@ -251,6 +251,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	/**
 	 * Return the EntityResolver to use, building a default resolver
 	 * if none specified.
+	 *
+	 * EntityResolver -》 ResourceEntityResolver 、 DelegatingEntityResolver  -》 PluggableSchemaResolver
 	 */
 	protected EntityResolver getEntityResolver() {
 		if (this.entityResolver == null) {

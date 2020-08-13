@@ -44,7 +44,14 @@ public class DelegatingEntityResolver implements EntityResolver {
 	public static final String XSD_SUFFIX = ".xsd";
 
 
+	//装饰者模式
+	//组合dtd的验证和schema验证
+
+	// BeansDtdResolver
+
 	private final EntityResolver dtdResolver;
+
+	// PluggableSchemaResolver
 
 	private final EntityResolver schemaResolver;
 
@@ -76,12 +83,17 @@ public class DelegatingEntityResolver implements EntityResolver {
 	}
 
 
+	//装饰者模式
+	//根据不同的类型 分别调用不同对象的 resolveEntity 方法
+
 	@Override
 	public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
 		if (systemId != null) {
+			// dtd 验证
 			if (systemId.endsWith(DTD_SUFFIX)) {
 				return this.dtdResolver.resolveEntity(publicId, systemId);
 			}
+			// xsd 验证(都是这种验证多)
 			else if (systemId.endsWith(XSD_SUFFIX)) {
 				return this.schemaResolver.resolveEntity(publicId, systemId);
 			}
