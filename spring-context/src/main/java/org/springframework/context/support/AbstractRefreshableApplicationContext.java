@@ -132,6 +132,7 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			customizeBeanFactory(beanFactory);
 			// 加载 Bean 到 BeanFactory 中
 			loadBeanDefinitions(beanFactory);
+			// 此时的beanFactory已经携带所有的xml的bean定义信息
 			this.beanFactory = beanFactory;
 		}
 		catch (IOException ex) {

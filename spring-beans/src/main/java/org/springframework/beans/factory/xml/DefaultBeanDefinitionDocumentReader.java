@@ -139,7 +139,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 
 		preProcessXml(root); //钩子
-		parseBeanDefinitions(root, this.delegate);
+		parseBeanDefinitions(root, this.delegate); //这时候将信息已经放在相关map中
 		postProcessXml(root); //钩子
 
 		this.delegate = parent;
