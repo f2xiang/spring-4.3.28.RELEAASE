@@ -1,4 +1,4 @@
-package com.test.ioc;
+package com.test.ioc.bean;
 /**
  * @Description: 
  * @Author: fengx
@@ -9,7 +9,7 @@ public class Person {
     private int age;
 
     public Person() {
-        System.out.println("无惨构造被成功初始化");
+        System.out.println("Person无惨构造被成功初始化");
     }
 
     public String getName() {

@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * Default implementation of the {@link PropertyValues} interface.
  * Allows simple manipulation of properties, and provides constructors
  * to support deep copy and construction from a Map.
- *
+ * 定义对象中的一个一个属性
  * @author Rod Johnson
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  */
 @SuppressWarnings("serial")
 public class MutablePropertyValues implements PropertyValues, Serializable {
-
+	// 对象的属性的列表，存放PropertyValue，对应 属性 和 value
 	private final List<PropertyValue> propertyValueList;
 
 	private Set<String> processedProperties;

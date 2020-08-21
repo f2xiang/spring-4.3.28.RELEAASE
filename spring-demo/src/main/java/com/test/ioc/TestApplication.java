@@ -11,8 +11,9 @@ import org.springframework.core.io.ClassPathResource;
  * @Author: fengx
  * @CreateDate: 2020/8/7 13:34
  */
-public class TestCreateBean {
+public class TestApplication {
     public static void main(String[] args) {
+
         testClassPathXmlApplicationContext();
 //       testXmlBeanFactory();
     }
@@ -39,4 +40,8 @@ public class TestCreateBean {
         //第2次getBean的时候直接读取缓存的对象
         Bean bean1 = factory.getBean(Bean.class);
     }
+
+
+
+
 }

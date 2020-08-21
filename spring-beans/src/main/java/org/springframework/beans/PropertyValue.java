@@ -64,7 +64,7 @@ public class PropertyValue extends BeanMetadataAttributeAccessor implements Seri
 	 * @param value the value of the property (possibly before type conversion)
 	 */
 	public PropertyValue(String name, Object value) {
-		this.name = name;
+		this.name = name;  // 属性和val （比如，user的age，为11）
 		this.value = value;
 	}
 
