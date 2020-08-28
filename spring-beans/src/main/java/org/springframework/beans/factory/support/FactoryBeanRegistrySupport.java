@@ -93,14 +93,14 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 	 * @param shouldPostProcess whether the bean is subject to post-processing
 	 * @return the object obtained from the FactoryBean
 	 * @throws BeanCreationException if FactoryBean object creation failed
-	 * @see org.springframework.beans.factory.FactoryBean#getObject()
+	 * @see org.springframework.beans.factory.FactoryBean#getObject() 从factorybean里获取对象
 	 */
 	protected Object getObjectFromFactoryBean(FactoryBean<?> factory, String beanName, boolean shouldPostProcess) {
 		if (factory.isSingleton() && containsSingleton(beanName)) {
 			synchronized (getSingletonMutex()) {
 				Object object = this.factoryBeanObjectCache.get(beanName);
 				if (object == null) {
-					object = doGetObjectFromFactoryBean(factory, beanName);
+					object = doGetObjectFromFactoryBean(factory, beanName); // Factory接口的getObject方法
 					// Only post-process and store if not put there already during getObject() call above
 					// (e.g. because of circular reference processing triggered by custom getBean calls)
 					Object alreadyThere = this.factoryBeanObjectCache.get(beanName);
