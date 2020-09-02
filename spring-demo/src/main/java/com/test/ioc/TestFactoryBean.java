@@ -1,5 +1,6 @@
 package com.test.ioc;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,8 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestFactoryBean {
 
     public static void main(String[] args) {
-        testFactoryBean();
-//        testFactoryBean1();
+//        testFactoryBean();
+        testFactoryBean1();
 
 
 
@@ -37,7 +38,7 @@ public class TestFactoryBean {
      * &的妙用
      */
     private static void testFactoryBean1() {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("ioc.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("ioc.xml");
         Object helloService = ctx.getBean("&helloService");
         // 拿到了HelloServiceFactoryBean
         System.out.println(helloService.getClass().toString());

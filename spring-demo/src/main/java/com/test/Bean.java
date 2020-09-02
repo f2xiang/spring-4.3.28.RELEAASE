@@ -6,4 +6,7 @@ package com.test;
  */
 public class Bean {
 
+    public Bean() {
+        System.out.println("bean初始化");
+    }
 }
