@@ -404,6 +404,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 			if (this.nativeJdbcExtractor != null) {
 				stmtToUse = this.nativeJdbcExtractor.getNativeStatement(stmt);
 			}
+			// StatementCallback为命令
 			T result = action.doInStatement(stmtToUse);
 			handleWarnings(stmt);
 			return result;
@@ -444,6 +445,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		execute(new ExecuteStatementCallback());
 	}
 
+	// 命令模式
 	@Override
 	public <T> T query(final String sql, final ResultSetExtractor<T> rse) throws DataAccessException {
 		Assert.notNull(sql, "SQL must not be null");
@@ -451,12 +453,13 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Executing SQL query [" + sql + "]");
 		}
-
+		// StatementCallback 命令接口
 		class QueryStatementCallback implements StatementCallback<T>, SqlProvider {
 			@Override
 			public T doInStatement(Statement stmt) throws SQLException {
 				ResultSet rs = null;
 				try {
+					// Query命令的Query操作
 					rs = stmt.executeQuery(sql);
 					ResultSet rsToUse = rs;
 					if (nativeJdbcExtractor != null) {
@@ -528,6 +531,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 		class UpdateStatementCallback implements StatementCallback<Integer>, SqlProvider {
 			@Override
 			public Integer doInStatement(Statement stmt) throws SQLException {
+				// Update命令的Update操作
 				int rows = stmt.executeUpdate(sql);
 				if (logger.isDebugEnabled()) {
 					logger.debug("SQL update affected " + rows + " rows");
