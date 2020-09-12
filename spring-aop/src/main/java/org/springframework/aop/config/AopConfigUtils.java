@@ -102,9 +102,11 @@ public abstract class AopConfigUtils {
 	}
 
 
+	// cls =  AnnotationAwareAspectJAutoProxyCreator
 	private static BeanDefinition registerOrEscalateApcAsRequired(Class<?> cls, BeanDefinitionRegistry registry, Object source) {
 		Assert.notNull(registry, "BeanDefinitionRegistry must not be null");
 
+		// 第一次进来 容器里没有这个BeanDefinition  走下面的创建
 		if (registry.containsBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME)) {
 			BeanDefinition apcDefinition = registry.getBeanDefinition(AUTO_PROXY_CREATOR_BEAN_NAME);
 			if (!cls.getName().equals(apcDefinition.getBeanClassName())) {
@@ -117,6 +119,7 @@ public abstract class AopConfigUtils {
 			return null;
 		}
 
+		// 给容器中注册了AnnotationAwareAspectJAutoProxyCreator
 		RootBeanDefinition beanDefinition = new RootBeanDefinition(cls);
 		beanDefinition.setSource(source);
 		beanDefinition.getPropertyValues().add("order", Ordered.HIGHEST_PRECEDENCE);
