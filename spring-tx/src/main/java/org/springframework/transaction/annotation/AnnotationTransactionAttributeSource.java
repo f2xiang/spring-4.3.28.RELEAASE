@@ -86,6 +86,7 @@ public class AnnotationTransactionAttributeSource extends AbstractFallbackTransa
 	public AnnotationTransactionAttributeSource(boolean publicMethodsOnly) {
 		this.publicMethodsOnly = publicMethodsOnly;
 		this.annotationParsers = new LinkedHashSet<TransactionAnnotationParser>(4);
+		//事务注解解析器, 处理Transactional注解的相关属性，比如rollbackFor
 		this.annotationParsers.add(new SpringTransactionAnnotationParser());
 		if (jta12Present) {
 			this.annotationParsers.add(new JtaTransactionAnnotationParser());
