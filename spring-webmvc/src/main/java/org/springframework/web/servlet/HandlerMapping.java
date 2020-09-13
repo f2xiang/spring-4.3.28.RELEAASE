@@ -50,6 +50,8 @@ import javax.servlet.http.HttpServletRequest;
  * @see org.springframework.web.servlet.handler.AbstractHandlerMapping
  * @see org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping
  * @see org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping
+ * 定义了请求到处理器之间的映射
+ * 也就是说，有了请求的路径，就能得到一个对应的处理器
  */
 public interface HandlerMapping {
 

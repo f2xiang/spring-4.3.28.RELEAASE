@@ -142,6 +142,7 @@ public class SpringServletContainerInitializer implements ServletContainerInitia
 
 		List<WebApplicationInitializer> initializers = new LinkedList<WebApplicationInitializer>();
 
+		// webAppInitializerClasses: WebApplicationInitializer的子类
 		if (webAppInitializerClasses != null) {
 			for (Class<?> waiClass : webAppInitializerClasses) {
 				// Be defensive: Some servlet containers provide us with invalid classes,
