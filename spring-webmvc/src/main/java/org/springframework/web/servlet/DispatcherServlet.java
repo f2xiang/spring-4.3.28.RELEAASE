@@ -485,15 +485,17 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
 	protected void initStrategies(ApplicationContext context) {
-		initMultipartResolver(context);
-		initLocaleResolver(context);
-		initThemeResolver(context);
-		initHandlerMappings(context);
-		initHandlerAdapters(context);
-		initHandlerExceptionResolvers(context);
+		initMultipartResolver(context); // 文件上传解析
+		initLocaleResolver(context); // 国际化
+		initThemeResolver(context); // 主题网页风格
+		initHandlerMappings(context); // 映射处理
+		initHandlerAdapters(context); // 适配器
+		initHandlerExceptionResolvers(context); // 异常
+		// 当在controller没有返回视图的时候，有一个默认的返回视图
+		// 我们熟悉的prefix，suffix，默认情况下为空串
 		initRequestToViewNameTranslator(context);
-		initViewResolvers(context);
-		initFlashMapManager(context);
+		initViewResolvers(context); // 视图解析
+		initFlashMapManager(context); // 请求存储属性
 	}
 
 	/**
@@ -814,6 +816,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T> List<T> getDefaultStrategies(ApplicationContext context, Class<T> strategyInterface) {
+		// 从配置文件DispatcherServlet.properties加载默认的
 		String key = strategyInterface.getName();
 		String value = defaultStrategies.getProperty(key);
 		if (value != null) {
@@ -898,6 +901,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		request.setAttribute(FLASH_MAP_MANAGER_ATTRIBUTE, this.flashMapManager);
 
 		try {
+			// 核心方法
 			doDispatch(request, response);
 		}
 		finally {
@@ -934,6 +938,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			Exception dispatchException = null;
 
 			try {
+				// 检查是不是Multipart的，是则转换成MultipartHttpServletRequest
 				processedRequest = checkMultipart(request);
 				multipartRequestParsed = (processedRequest != request);
 

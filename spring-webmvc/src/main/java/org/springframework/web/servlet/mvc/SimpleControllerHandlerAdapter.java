@@ -46,7 +46,7 @@ public class SimpleControllerHandlerAdapter implements HandlerAdapter {
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		// 把请求移交给Controller做处理
 		return ((Controller) handler).handleRequest(request, response);
 	}
 

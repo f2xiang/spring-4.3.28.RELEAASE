@@ -47,7 +47,7 @@ public class HttpRequestHandlerAdapter implements HandlerAdapter {
 	@Override
 	public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-
+		// 把请求移交给HttpRequestHandler做处理
 		((HttpRequestHandler) handler).handleRequest(request, response);
 		return null;
 	}

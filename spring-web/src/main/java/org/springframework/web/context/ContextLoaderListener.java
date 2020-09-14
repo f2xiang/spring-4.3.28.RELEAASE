@@ -37,6 +37,9 @@ import javax.servlet.ServletContextListener;
  * @see #setContextInitializers
  * @see org.springframework.web.WebApplicationInitializer
  * @see org.springframework.web.util.Log4jConfigListener
+ * 实现了ServletContextListener， 所以当servlet容器启动后，
+ * 就会调用 contextInitialized(ServletContextEvent sce);
+ * 我们也可以自定义一个类，实现ServletContextListener，就能在容器初始化以后做点事情
  */
 public class ContextLoaderListener extends ContextLoader implements ServletContextListener {
 
@@ -101,6 +104,7 @@ public class ContextLoaderListener extends ContextLoader implements ServletConte
 
 	/**
 	 * Initialize the root web application context.
+	 * 在Servlet容器启动以后，就会调用这个方法， 创建WebApplicationContext
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
